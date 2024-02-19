@@ -15,6 +15,7 @@ func Rig(options ...Option) rig.Option {
 }
 
 // FS returns an option that serves the given file system at any of the given patterns.
+// Note that this uses Go's built in file server, so it will not serve files with etags or cache headers.
 func FS(filesystem fs.FS, patterns ...string) Option {
 	return func(cfg *config) error {
 		fs := http.FileServer(http.FS(filesystem))

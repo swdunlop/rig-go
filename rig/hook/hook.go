@@ -3,14 +3,15 @@
 package hook
 
 import (
+	"context"
 	"net"
 	"net/http"
 	"sort"
 )
 
-// Listener hooks are called when the rig is setting up a new listener.
-type Listener interface {
-	RigListener(*net.ListenConfig)
+// Listen hooks are called when the rig is setting up a new listener.
+type Listen interface {
+	Listen(ctx context.Context) (net.Listener, error)
 }
 
 // Server hooks are called when the rig is setting up a new HTTP server.

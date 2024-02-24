@@ -7,6 +7,13 @@ import (
 	"github.com/swdunlop/rig-go/rig"
 )
 
+// Handler returns a http.Handler that serves the given rig.
+func Handler(options ...Option) http.Handler {
+	var cfg config
+	cfg.apply(options...)
+	return cfg.handler()
+}
+
 // Rig returns a rig option that configures a rig to serve an API from the given package.
 func Rig(options ...Option) rig.Option {
 	var cfg config
@@ -108,4 +115,12 @@ func (cfg *config) apply(options ...Option) {
 func (cfg *config) rigOption(r *rig.Config) error {
 	r.Hook(cfg)
 	return nil
+}
+
+func (cfg *config) handler() http.Handler {
+	mux := http.NewServeMux()
+	for _, it := range cfg.patternHandlers {
+		mux.Handle(it.pattern, it.handler)
+	}
+	return mux
 }

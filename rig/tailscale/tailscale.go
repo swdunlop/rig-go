@@ -11,6 +11,7 @@ import (
 	"tailscale.com/tsnet"
 )
 
+// Rig returns a rig.Option that configures a Tailscale server.
 func Rig(address string, options ...Option) rig.Option {
 	return func(r *rig.Config) error {
 		var cfg config

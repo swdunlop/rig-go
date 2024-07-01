@@ -9,6 +9,8 @@ require (
 	github.com/rs/zerolog v1.32.0
 	github.com/swdunlop/html-go v0.0.0-20230811185002-edbbc773a2f6
 	github.com/swdunlop/zugzug-go v0.0.0-20231203221927-9874d313168b
+	github.com/tinylib/msgp v1.1.9
+	nhooyr.io/websocket v1.8.10
 	tailscale.com v1.60.0
 )
 
@@ -61,6 +63,7 @@ require (
 	github.com/mdlayher/socket v0.5.0 // indirect
 	github.com/miekg/dns v1.1.58 // indirect
 	github.com/mitchellh/go-ps v1.0.0 // indirect
+	github.com/philhofer/fwd v1.1.2 // indirect
 	github.com/pierrec/lz4/v4 v4.1.21 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/safchain/ethtool v0.3.0 // indirect
@@ -94,5 +97,4 @@ require (
 	golang.zx2c4.com/wireguard/windows v0.5.3 // indirect
 	gvisor.dev/gvisor v0.0.0-20240119233241-c9c1d4f9b186 // indirect
 	inet.af/peercred v0.0.0-20210906144145-0893ea02156a // indirect
-	nhooyr.io/websocket v1.8.10 // indirect
 )

@@ -117,7 +117,6 @@ func (ctx *Scope) respond(ret protocol.Response) error {
 	if err != nil {
 		return fmt.Errorf(`%w while encoding response`, err)
 	}
-	println(`sending`, string(msg))
 	return ctx.send(msg)
 }
 

@@ -68,6 +68,7 @@ var _ hook.Listen = (*config)(nil)
 
 type Option func(*config) error
 
+// Dir specifies the directory to store Tailscale state.  Defaults to wherever Tailscale likes to put it.
 func Dir(dir string) Option {
 	return func(cfg *config) error {
 		cfg.tsnet.Dir = dir

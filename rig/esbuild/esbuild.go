@@ -98,8 +98,8 @@ func printErrors(errors []esbuild.Message) {
 }
 
 // Output returns a rig option that sets the output directory for the esbuild build.
-func Output(outfile string) Option {
-	return func(cfg *config) { cfg.build.Outfile = outfile }
+func Output(outdir string) Option {
+	return func(cfg *config) { cfg.build.Outdir = outdir }
 }
 
 // EntryPoint appends entry points to the esbuild build options.

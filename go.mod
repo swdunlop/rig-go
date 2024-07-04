@@ -10,7 +10,7 @@ require (
 	github.com/swdunlop/html-go v0.0.0-20240325145910-5746e466b36f
 	github.com/swdunlop/zugzug-go v0.0.0-20231203221927-9874d313168b
 	github.com/tinylib/msgp v1.1.9
-	nhooyr.io/websocket v1.8.10
+	nhooyr.io/websocket v1.8.11
 	tailscale.com v1.60.0
 )
 

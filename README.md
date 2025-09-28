@@ -34,6 +34,12 @@ The `rig.Main`, `rig.Run` and `rig.Config.Run` functions in [rig/rig.go](rig/rig
 
 Originally, this behavior was meant to be connected to a filesystem watcher so the child process could be rebuilt for a hot reload without losing the state of the outer process.  It might, still.
 
+### Dependencies
+
+Tailscale relies on Gvisor.  Be careful when doing a naive `go get -u` to bump dependencies, because Gvisor is [a little weird](https://github.com/google/gvisor/pull/10593) -- the default branch is not compatible with being imported as a Go package -- instead you must use the `go` branch.  It is best to just remove the `gvisor` entry from `go.mod` and `go mod tidy` to let Tailscale manage which tag is used.
+
+People make my head hurt.
+
 ### Contributions
 
 Bug fixes are welcome, but this is mostly just where I squirrel away things that I use in PoCs, so features might be better in other repositories.  The hook functionality is intended to enable third party rigs.

@@ -257,7 +257,17 @@ func (cfg *Config) serveListeners(ctx context.Context, server *http.Server, list
 	for _, lr := range listeners {
 		go func(lr net.Listener) {
 			defer wg.Done()
+
 			addr := lr.Addr().String()
+			log := hog.From(ctx).With().
+				Str(`listener`, addr).
+				Logger()
+
+			// Do not babble about startup if we are a worker.
+			if !cfg.worker {
+				log.Info().Msg(`listening for HTTP requests`)
+			}
+
 			err := server.Serve(lr)
 			// Do not babble about shutdown if we are a worker
 			if cfg.worker {
@@ -265,9 +275,9 @@ func (cfg *Config) serveListeners(ctx context.Context, server *http.Server, list
 			}
 			switch err {
 			case nil, http.ErrServerClosed:
-				hog.From(ctx).Info().Str(`listener`, addr).Msg(`HTTP service stopped`)
+				log.Info().Msg(`HTTP service stopped`)
 			default:
-				hog.From(ctx).Info().Str(`listener`, addr).Err(err).Msg(`HTTP service error`)
+				log.Info().Err(err).Msg(`HTTP service error`)
 			}
 		}(lr)
 	}
